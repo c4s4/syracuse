@@ -9,7 +9,7 @@ fn main() {
 
 fn syracuse(mut n: u64) {
     let mut max: u64 = n;
-    let mut values: Vec<u64> = vec![n];
+    let mut values: Vec<String> = vec![n.to_string()];
     while n != 1 {
         if n % 2 == 0 {
             n = n / 2;
@@ -19,7 +19,7 @@ fn syracuse(mut n: u64) {
         if n > max {
             max = n;
         }
-        values.push(n);
+        values.push(n.to_string());
     }
-    println!("{:?}, max: {max}, count: {}", values, values.len());
+    println!("{} ({}) [{}]", values.join(" "), values.len(), max);
 }
