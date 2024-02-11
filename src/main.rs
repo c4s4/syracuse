@@ -1,9 +1,14 @@
+use std::process;
 use std::vec;
 
 fn main() {
     for arg in std::env::args().skip(1) {
-        let i: u64 = arg.trim().parse().expect("Not a number!");
-        syracuse(i);
+        let result = arg.trim().parse();
+        if result.is_err() {
+            eprintln!("ERROR {} is not a valid number", arg);
+            process::exit(1);
+        }
+        syracuse(result.unwrap());
     }
 }
 
