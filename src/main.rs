@@ -10,23 +10,26 @@ fn main() {
                 process::exit(1);
             }
         };
-        syracuse(n);
+        let suite = syracuse(n);
+        print(&suite);
     }
 }
 
-fn syracuse(mut n: u64) {
-    let mut max: u64 = n;
-    let mut values: Vec<String> = vec![n.to_string()];
+fn syracuse(mut n: u64) -> Vec<u64> {
+    let mut suite: Vec<u64> = vec![n];
     while n != 1 {
         if n % 2 == 0 {
             n = n / 2;
         } else {
             n = 3 * n + 1;
         }
-        if n > max {
-            max = n;
-        }
-        values.push(n.to_string());
+        suite.push(n);
     }
-    println!("{} ({}) [{}]", values.join(" "), values.len(), max);
+    suite
+}
+
+fn print(suite: &Vec<u64>) {
+    let max = suite.iter().max().unwrap();
+    let strings = suite.iter().map(|n| n.to_string()).collect::<vec::Vec<String>>();
+    println!("{} ({}) [{}]", strings.join(" "), suite.len(), max);
 }
